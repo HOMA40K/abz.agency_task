@@ -54,13 +54,13 @@ Route::get('/profile', function () {
                 // return response()->json(['user' => $user]);
 
             } else {
-                return redirect('/loginform', 402);
+                return redirect('/loginform');
             }
         } catch (Exception $e) {
-            return redirect('/loginform', 403);
+            return redirect('/loginform');
         }
     } else {
-        return redirect('/loginform', 404);
+        return redirect('/loginform');
     }
 
 });
