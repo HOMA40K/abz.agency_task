@@ -12,6 +12,7 @@
 <a href="/showusers"><button>show users</button></a>
 <a href="/upload"><button>upload picture</button></a>
 <a href="/profile"><button>profile</button></a>
+<a href="/addusers"><button>add users</button></a>
 </body>
 </html>
 

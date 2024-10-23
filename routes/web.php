@@ -35,6 +35,10 @@ Route::get('/upload', function () {
     return view('upload');
 });
 
+Route::get('/addusers', function () {
+    return view('generateUsers');
+});
+
 
 Route::get('/profile', function () {
     $jwtSecret = env('JWT_SECRET');
