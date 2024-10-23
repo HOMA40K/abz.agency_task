@@ -23,6 +23,18 @@ Route::get('/getToken', function () {
 
 });
 
+Route::get('/registerform', function () {
+    return view('register');
+});
+
+Route::get('/showusers', function () {
+    return view('showusers');
+});
+
+Route::get('/upload', function () {
+    return view('upload');
+});
+
 
 Route::get('/profile', function () {
     $jwtSecret = env('JWT_SECRET');
