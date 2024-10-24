@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h2>Register</h2>
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Name</label>
@@ -20,12 +20,12 @@
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <label for="picture">picture</label>
+                <input type="file" class="form-control" id="picture" name="picture" required>
             </div>
             <div class="form-group">
-                <label for="password-confirm">Confirm Password</label>
-                <input type="password" class="form-control" id="password-confirm" name="password_confirmation" required>
+                <label for="phone_number">Phone</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number" required>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
