@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Http\Controllers\ImageController;
 
 class MyAuthController extends Controller
 {
@@ -15,19 +16,26 @@ class MyAuthController extends Controller
         try{
             $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'email' => 'required|string|email|max:255|unique:users',            
+            'picture' => 'required|image|max:2048',
+            'phone_number' => 'required|string|max:255',
         ]);
+
+        }
+        catch(\Exception $e){
+            return response()->json(['message' => 'User registration failed', 'error' => $e], 409);
+        }
+
+        $imageController = new ImageController();
+        $imagePath = $imageController->resizeImage($request->file('picture'), 70, 70);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make('password'),
+            'picture_path' => $imagePath,
+            'phone_number' => $request->phone_number,
         ]);
-        }
-        catch(\Exception $e){
-            return response()->json(['message' => 'User registration failed', 'error' => $e->getMessage()], 409);
-        }
 
         return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
     }
@@ -36,7 +44,7 @@ class MyAuthController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
+            'password' => 'required|string',            
         ]);
 
         if (!Auth::attempt($request->only('email', 'password'))) {
