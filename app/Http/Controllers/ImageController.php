@@ -31,7 +31,7 @@ class ImageController extends Controller
     }
 
     
-    private function resizeImage($image, $width, $height)
+    public function resizeImage($image, $width, $height)
     {
         $imageName = time() . '.' . $image->extension();
         $imagePath = public_path('images/users/' . $imageName);
@@ -40,7 +40,8 @@ class ImageController extends Controller
             ->resize($width, $height)
             ->save($imagePath);
 
-        return $imagePath;
+        
+        return $this->optimizeImage($imagePath);
     }
     
 
