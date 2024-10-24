@@ -13,6 +13,7 @@
 <a href="/upload"><button>upload picture</button></a>
 <a href="/profile"><button>profile</button></a>
 <a href="/addusers"><button>add users</button></a>
+<a href="/api/dropUsers"><button>drop users</button></a>
 </body>
 </html>
 
