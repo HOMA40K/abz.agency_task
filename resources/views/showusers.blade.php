@@ -9,8 +9,11 @@
 <table id="user-table">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Phone</th>
+            <th>Picture Path</th>
         </tr>
     </thead>
     <tbody id="user-list">
@@ -33,12 +36,26 @@
                 
                 data.data.forEach(user => {
                     let userCell = document.createElement('tr');
+                    let userIdTd = document.createElement('td');
                     let userNameTd = document.createElement('td');
                     let userEmailTd = document.createElement('td');
+                    let userPhoneTd = document.createElement('td');
+                    let userpictureTd = document.createElement('td');
+                    userIdTd.textContent = user.id;
                     userNameTd.textContent = user.name;
                     userEmailTd.textContent = user.email;
+                    userPhoneTd.textContent = user.phone_number;
+                    let userPictureImg = document.createElement('img');
+                    userPictureImg.src = `${user.picture_path}`;
+                    userPictureImg.width = 100;
+                    userPictureImg.height = 100;
+                    userpictureTd.appendChild(userPictureImg);
+
+                    userCell.appendChild(userIdTd);
                     userCell.appendChild(userNameTd);
                     userCell.appendChild(userEmailTd);
+                    userCell.appendChild(userPhoneTd);
+                    userCell.appendChild(userPictureImg);
                     userList.appendChild(userCell);
                 });
                 
